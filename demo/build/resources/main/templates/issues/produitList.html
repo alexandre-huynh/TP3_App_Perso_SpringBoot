@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Catalogue de produits</title>
+  <meta charset = "utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel = "stylesheet" style = "text/css" href = "style.css">
+  <meta charset="UTF-8">
+</head>
+<body>
+    <div class="container marginTop">
+        <div class="panel panel-success marginTop">
+            <div class="panel-heading">Rechercher un produit par catégorie</div>
+            <div class="panel-body">
+
+                <!--search est pour indiquer quel genre de formulaire c'est-->
+                <!--faut donc préciser il attend quel type d'information-->
+                <form method ="post" action = "#" class = "form" th:object="${search}" th:action="@{/searchProduit}">
+                    <div class = "form-group">
+                        <label for="categorie">Categorie du produiti :</label>
+                        <input  style="font-weight:bold"   name ="categorie" placeholder = "categorie" class = "form-control" id ="categorie" th:field="*{categorie}" required>
+                    </div>
+                    <button type="submit" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class = "glyphicon glyphicon-search"></span>Search</button>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container marginTop">
+        <a href="addProduit" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Add...</a>
+        <br><br>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Liste de nos produits</div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th scope="col">Identifiant produit</th>
+                        <th scope="col">Nom du produit</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Prix</th>
+                    </tr>
+                    <tr th:each ="produit : ${liste_produits}"> <!--un foreach chaque personne de la liste persons-->
+                        <td th:utext="${produit.idProduit}">...</td>
+                        <td th:utext="${produit.nomProduit}">...</td>
+                        <td th:utext="${produit.categorie}">...</td>
+                        <td th:utext="${produit.prix}">...</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br/><br/>
+  </body>
+</html>
